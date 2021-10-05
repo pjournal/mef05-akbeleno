@@ -1,1 +1,3 @@
-[Welcome to Özgür's page](Untitled.html)
+[1st Week Assignment](Untitled.html)
+
+Personal info and some topics related to R
