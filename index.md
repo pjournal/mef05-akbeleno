@@ -1,3 +1,3 @@
-[1st Week Assignment](Untitled.html)
+[1st Week](Untitled.html)
 
 Personal info and some topics related to R
