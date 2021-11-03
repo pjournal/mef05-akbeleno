@@ -1,0 +1,121 @@
+---
+title: "netflix_assignmnt"
+author: "ozgur_akbelen"
+date: "11/3/2021"
+output: 
+html_document:
+df_print: paged
+prettydoc::html_pretty:
+theme: leonids
+highlight: github
+---
+
+Installing packages which will need in further sections 
+```{r}
+install.packages("htmltab", repos = "http://cran.us.r-project.org")
+install.packages("lubridate", repos = "http://cran.us.r-project.org")
+install.packages("plotly", repos = "http://cran.us.r-project.org")
+install.packages("dplyr", repos = "http://cran.us.r-project.org")
+install.packages("tm", repos = "http://cran.us.r-project.org")
+install.packages("prettydoc", repos = "http://cran.us.r-project.org")
+```
+Activating packages
+```{r}
+library("htmltab")
+library("lubridate")
+library("plotly")
+library("dplyr")
+library("tm")
+library("prettydoc")
+```
+
+Reading data files from github to local pc
+```{r}
+urlfile<-'https://raw.githubusercontent.com/ygterl/EDA-Netflix-2020-in-R/master/netflix_titles.csv'
+data<-read.csv(urlfile)
+```
+ 
+Create Explantion data table with plotly 
+```{r}
+explanation_table <- rbind(c('show_id', 'type', 'title', 'director', 'cast', 'country', 'date_added', 'release_year', 'rating' , 'duration', 'listed_in', 'description'), 
+    c("Unique ID for movies", 
+    "Movie or Tv Show ", 
+    "Title of the Movie or TV Show", 
+    "Director of the Movie /TV Show", 
+    "List of Actors",
+    "Where Movie or Tv show was produced",
+    "Movie added date on Netflix",
+    "Actual release year of Movie / TV Show",
+    "Rating of Movie or TV Show",
+    "Total Duration - in minutes or number of seasons",
+    "Genre",
+    "The summary"))
+
+description_table <- plot_ly(
+  type = 'table',
+  columnorder = c(1,2),
+  columnwidth = c(12,12),
+  header = list(
+    values = c('<b>VARIABLES</b><br>', '<b>DESCRIPTION</b>'),
+    line = list(color = '#000000'),
+    fill = list(color = '#fff2cc'),
+    align = c('left','center'),
+    font = list(color = 'black', size = 15),
+    height = 40
+  ),
+  cells = list(
+    values = explanation_table,
+    line = list(color = '#506784'),
+    fill = list(color = c('#C9DFEC', 'white')),
+    align = c('left', 'left'),
+    font = list(color = c('#000000'), size = 15),
+    height = 30
+    ))
+description_table
+
+```
+Cleaning dataframe
+Deleting unnecessary variable "show_id"
+Changing date format
+Removing Na's and duplicate datas from database
+Changing variable formats as factor
+```{r}
+data <- data [-1]
+data$date_added <- mdy(data$date_added)
+data <- distinct(data ,director, title, country, type, release_year, .keep_all = TRUE)
+data$type <- as.factor(data$type)
+```
+
+Total number of TV series and movies by year.
+```{r}
+data_release <- data %>% group_by(release_year) %>% summarise(
+  count = n())
+summary(data_release)
+
+```
+
+Visualization of Total number of TV series and movies by year with GGplot 2 library; Y axis changed by log 10 base.
+```{r}
+ggplot(data_release, aes(x=release_year, y=count)) + 
+  ylim(0,max(data_release$count)) +
+  ggtitle("Number of Movie and TV Show in time scale") +
+  xlab("Year") + 
+  ylab("Log10 Number of Movie and TV Show")+
+  scale_x_continuous(limits = c(1925, 2020, 25)) +
+  scale_y_log10()+
+  geom_point(aes(color=count))
+  
+```
+Which TV show and movie genres are the most in Netflix?
+```{r}
+data_genre <- strsplit(data$listed_in, split = ", ")
+data_genre <- data.frame(type = rep(data$type, sapply(data_genre, length)), genre = unlist(data_genre))
+data_genre$genre <- as.character(data_genre$genre)
+
+sum_of_genre <- na.omit(data_genre) %>%
+  group_by(genre, type) %>%
+  summarise(count = n())
+
+plot_ly(sum_of_genre, x= ~genre, y= ~sum_of_genre$count, type = "bar" )%>%
+  layout(title = 'Genres on Netflix',font= 24, plot_bgcolor = "#e5ecf6", xaxis = list(title = 'Genres'), yaxis = list(title = 'Sum of Genres'))
+```
