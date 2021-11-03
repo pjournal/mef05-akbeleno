@@ -3,28 +3,53 @@ title: "ozgur_akbelen"
 author: "ozgur_akbelen"
 date: "9/22/2021"
 output: html_document
----
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
-## R Markdown
+# Welcome to Özgür's Page
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r cars}
-summary(cars)
-```
+## Pages
 
-## Including Plots
 
-You can also embed plots, for example:
+You can find my weekly progress.
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+### Week 1
+
+####Assignment 1: RMarkdown Homework
+Özgür Akbelen
+
+About me
+
+My name is Özgür Akbelen. I graduated from Boğaziçi University Management Information Systems in 2017. Upon my graduation I have been working in CRM field since 4 years. I started my career as assistant CRM specialist in Sony Eurasia in 2018. After almost 3 years of working at Sony I had an opportunity to work as CRM Manager at Storytel. Since February 2021 I continue my career with this role. 
+
+Customer segmentation has always been one of the most attractive duties I was involved in. I participated in creating different segments based on different goals mostly by using SQL and different marketing cloud platforms such as Salesforce and Braze. After working closely with data branches I noticed that I want to go deeper with data increase my knowledge in data science as I noticed that part of my job could be something that I would like to focus more and spend more time with. Considering my background and my future goals for my career I believe this program will broaden my horizon in data field and bring new opportunities.
+
+###**3 R posts relevant to my interests**
+
+####_**Machine Learning with R: Churn Prediction**_
+R is one of the popular languages in data science ecosystem. It is mainly designed for statistical computing and graphics and thus it eases  implementation of statistical techniques, which makes it excellent choice for machine learning tasks.
+In this article a random forest mode is created to solve a machine learning problem: churn prediction. Please read article [here](https://towardsdatascience.com/machine-learning-with-r-churn-prediction-be5d2b4dba93) to learn more.
+
+
+####_**Clustering: Ways to Organize Data**_
+We can let computer create the clusters of personas thanks to unsupervised classification, which lets computers decide how to use the values and characteristics of the data. Clustering is one of the examples unsupervised classification. There are lots of different clustering techniques used depending on the approaches used to solve the problem. This article gives more info on ways to organize data by using clusters along with theoretical knowledge and practices for both K-means clustering and agglomerative hierarchical clustering.
+Please read article [here](https://outlier.ai/data-driven-daily/clustering/) to learn more.
+
+####_**Outlier detection and treatment with R**_
+In this post author starts with explaining the importance of outliers and gives it to the reader with showing the differences of a linear regression study with and without outliers. Blog is also enriched with code pieces in details along with graphical displays along the way from detection to treatment of outliers.
+Please read article [here](https://www.r-bloggers.com/2016/12/outlier-detection-and-treatment-with-r/) to learn more.
+
+
+
+
+
+
+
+### Week 2
+
+### Week 3
+
+### Week 4
+
