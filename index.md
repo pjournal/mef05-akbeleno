@@ -2,6 +2,6 @@
 
 Personal info and some topics related to R
 
-[4th Week](nextflix_assignment.html)
+[4th Week](netflix_assignment.html)
 
 Analysis of Netflix dataset
